@@ -1,9 +1,2 @@
 {% load news_tags %}
-{% get_categories %}
-
-<div class="list-group">
-     {% for cat in categories %}
-        <a class="list-group-item list-group-item-action" href="{% url 'categories' cat.pk %}">
-            {{ cat }}</a>
-    {% endfor %}
- </div>
+{% show_categories %}
