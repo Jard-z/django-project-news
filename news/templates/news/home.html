@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block title %}
+{% endblock %}
+
+{% block sidebar %}<div class="col-md-4">
+    <div class="list-group">
+        {% for cat in categories %}
+        <a class="list-group-item list-group-item-action" href="{% url 'categories' cat.pk %}">
+            {{ cat }}</a>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
+
+
+{% block content %}
+<div class="col-md-8">
+{% for n in news %}
+    <div class="card mb-3">
+        <div class="card-header">
+            {{ n.category }}
+        </div>
+        <a class="list-group-item" href="">
+            <div class="card-body">
+                <div class="media">
+                    {% if n.photo %}
+                        <img alt="" class="mr-3" src="{{ n.photo.url }}" width="350">
+                    {% endif %}
+                    <div class="media-body">
+                        <h5 class="card-title">{{ n.title }}</h5>
+                        <p class="card-text">{{ n.content|safe|linebreaks|truncatewords:100 }}</p>
+                    </div>
+                </div>
+            </div>
+        </a>
+        <div class="card-footer text-muted">
+            {{ n.update_date|date:"d.m.Y H:m" }}
+        </div>
+    </div>
+{% endfor %}
+</div>
+{% endblock %}
