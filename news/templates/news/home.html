@@ -12,9 +12,9 @@
 {% for n in news %}
             <div class="card mb-3">
                 <div class="card-header">
-                    {{ n.category }}
+                    <a href="{{ n.category.get_absolute_url }}" class="nav-link">{{ n.category }}</a>
                 </div>
-                <a class="list-group-item" href="">
+                <a class="nav-link" style="color:black;" href="{{ n.get_absolute_url }}">
                     <div class="card-body">
                         <div class="media">
                             {% if n.photo %}
@@ -28,7 +28,7 @@
                     </div>
                 </a>
                 <div class="card-footer text-muted">
-                    {{ n.update_date|date:"d.m.Y H:m" }}
+                    {{ n.update_date|date:"d.m.Y" }}<t> {{ n.update_date|time:"h:i" }}
                 </div>
             </div>
         {% endfor %}
