@@ -12,7 +12,58 @@
 {% block content %}
 <form action="" method="post">
     {% csrf_token %}
-    {{form.as_p}}
+
+
+    {{ form.as_p }}
+
+
+
+    {% comment %}
+    {{ form.non_field.errors }}
+    <div class="mb-3">
+        <label class="form-label" for="{{ form.title.id_for_label }}">Название: </label>
+        {{ form.title }}
+        <div class="invalid-feedback">
+            {{ forms.title.errors }}
+        </div>
+    </div>
+    <div class="mb-3">
+        <label class="form-label" for="{{ form.content.id_for_label }}">Текст: </label>
+        {{ form.content }}
+        <div class="invalid-feedback">
+            {{ forms.content.errors }}
+        </div>
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label" for="{{ form.is_published.id_for_label }}">Публиковать? </label>
+        {{ form.is_published }}
+        <div class="invalid-feedback">
+            {{ forms.is_published.errors }}
+        </div>
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label" for="{{ form.category.id_for_label }}">Категория: </label>
+        {{ form.category }}
+        <div class="invalid-feedback">
+            {{ forms.category.errors }}
+        </div>
+    </div>
+    {% endcomment %}
+
+    {% comment %}
+    {% for field in form %}
+    <div class="mb-3">
+        {{ field.label_tag }}
+        {{ field }}
+        <div class="invalid-feedback">
+            {{ forms.title.errors }}
+        </div>
+    </div>
+    {% endfor %}
+    {% endcomment %}
+
     <button type="submit" class="btn btn-primary">Добавить</button>
 </form>
 
