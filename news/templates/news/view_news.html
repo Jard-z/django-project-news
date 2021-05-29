@@ -11,21 +11,21 @@
 {% block content %}
 <div class="card mb-3">
     <div class="card-header">
-        <a class="nav-link" href="{{ news_item.category.get_absolute_url }}">{{ news_item.category }}</a>
+        <a class="nav-link" href="{{ news_item.category.get_absolute_url }}">{{ object.category }}</a>
     </div>
         <div class="card-body">
             <div class="media">
-                {% if news_item.photo %}
-                    <img alt="" class="mr-3" src="{{ news_item.photo.url }}" width="100%">
+                {% if object.photo %}
+                    <img alt="" class="mr-3" src="{{ object.photo.url }}" width="100%">
                 {% endif %}
                 <div class="media-body">
-                    <h5 class="card-title">{{ news_item.title }}</h5>
-                    <p class="card-text">{{ news_item.content|safe|linebreaks }}</p>
+                    <h5 class="card-title">{{ object.title }}</h5>
+                    <p class="card-text">{{ object.content|safe|linebreaks }}</p>
                 </div>
             </div>
         </div>
     <div class="card-footer text-muted">
-        {{ news_item.update_date|date:"d.m.Y H:m" }}
+        {{ object.update_date|date:"d.m.Y h:i" }}
     </div>
 </div>
 
