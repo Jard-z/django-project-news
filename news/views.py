@@ -35,4 +35,4 @@ def add_news(request):
             return redirect(news)
     else:
         form = NewsForm()
-        return render(request, 'news/add_news.html', {'form': form})
+    return render(request, 'news/add_news.html', {'form': form})
