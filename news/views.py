@@ -1,9 +1,7 @@
-from django.shortcuts import render, get_object_or_404, redirect
 from django.views.generic import ListView, DetailView, CreateView
 
-
-from .models import *
 from .forms import *
+from .models import *
 
 
 class HomeNews(ListView):
@@ -17,7 +15,7 @@ class HomeNews(ListView):
         return context
 
     def get_queryset(self):
-        return News.objects.filter(is_published=True)
+        return News.objects.select_related('category').filter(is_published=True).select_related('category')
 
 
 class NewsCategory(ListView):
@@ -32,7 +30,7 @@ class NewsCategory(ListView):
         return context
 
     def get_queryset(self):
-        return News.objects.filter(category_id=self.kwargs['category_id'], is_published=True)
+        return News.objects.filter(category_id=self.kwargs['category_id'], is_published=True).select_related('category')
 
 
 class ViewNews(DetailView):

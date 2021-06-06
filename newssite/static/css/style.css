@@ -6,3 +6,22 @@ body {
     color: #f00;
     list-style-type: none;
 }
+
+.rounded-pill {
+    border-radius: 50rem;
+}
+.bg-primary {
+    background-color: #bcc0c5!important;
+}
+.badge {
+    display: inline-block;
+    padding: .35em .65em;
+    font-size: .75em;
+    font-weight: 700;
+    line-height: 1;
+    color: #fff;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border-radius: .25rem;
+}
