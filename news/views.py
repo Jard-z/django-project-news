@@ -2,16 +2,21 @@ from django.views.generic import ListView, DetailView, CreateView
 
 from .forms import *
 from .models import *
+from .utils import MyMixin
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 
-class HomeNews(ListView):
+class HomeNews(MyMixin, ListView):
     model = News
     template_name = 'news/home.html'
     context_object_name = 'news'
+    mixin_prop = 'hello world'
+    paginate_by = 1
 
     def get_context_data(self, **kwargs):
         context = super(HomeNews, self).get_context_data(**kwargs)
         context['title'] = 'Главная'
+        context['mixin_prop'] = self.get_prop()
         return context
 
     def get_queryset(self):
@@ -23,6 +28,7 @@ class NewsCategory(ListView):
     template_name = 'news/home.html'
     context_object_name = 'news'
     allow_empty = False
+    paginate_by = 2
 
     def get_context_data(self, **kwargs):
         context = super(NewsCategory, self).get_context_data(**kwargs)
@@ -38,9 +44,10 @@ class ViewNews(DetailView):
     template_name = 'news/view_news.html'
 
 
-class CreateNews(CreateView):
+class CreateNews(LoginRequiredMixin, CreateView):
     form_class = NewsForm
     template_name = 'news/add_news.html'
+    login_url = '/admin/'
 
 # def index(request):
 #    news = News.objects.all()

@@ -9,24 +9,29 @@
 {% endblock %}
 
 {% block content %}
-{% for n in news %}
+
+{% for news in page_obj %}
             <div class="card mb-3">
                 <div class="card-header">
-                    <a href="{{ n.category.get_absolute_url }}" class="nav-link">{{ n.category }}</a>
+                    <a href="{{ news.category.get_absolute_url }}" class="nav-link">{{ news.category }}</a>
                 </div>
-                <a class="nav-link" style="color:black;" href="{{ n.get_absolute_url }}">
+                <a class="nav-link" style="color:black;" href="{{ news.get_absolute_url }}">
                     <div class="card-body">
-                        {% if n.photo %}
-                            <img alt="" class="mr-3" src="{{ n.photo.url }}" width="350">
+                        {% if news.photo %}
+                            <img alt="" class="mr-3" src="{{ news.photo.url }}" width="350">
                         {% endif %}
 
-                        <h5 class="card-title">{{ n.title }}</h5>
-                        <p class="card-text">{{ n.content|safe|linebreaks|truncatewords:100 }}</p>
+                        <h5 class="card-title">{{ news.title }}</h5>
+                        <p class="card-text">{{ news.content|safe|linebreaks|truncatewords:100 }}</p>
                     </div>
                 </a>
                 <div class="card-footer text-muted">
-                    {{ n.update_date|date:"d.m.Y h:i" }}
+                    {{ news.update_date|date:"d.m.Y h:i" }}
                 </div>
             </div>
         {% endfor %}
+
+
+
 {% endblock %}
+

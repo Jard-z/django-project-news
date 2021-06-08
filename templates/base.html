@@ -29,6 +29,10 @@
 
                 <div class="col-md-9">
                     {% block content %}{% endblock %}
+
+                    {% if page_obj.has_other_pages %}
+                        {% include 'inc/_page.html' %}
+                    {% endif %}
                 </div>
 
             </div>
