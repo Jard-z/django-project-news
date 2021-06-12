@@ -38,6 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'debug_toolbar',
+    'ckeditor',
+    'ckeditor_uploader',
     'news.apps.NewsConfig',
     'user.apps.UserConfig'
 
@@ -137,7 +139,16 @@ MEDIA_URL = '/media/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-
 INTERNAL_IPS = [
     '127.0.0.1',
 ]
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_USE_TLS = False
+EMAIL_USE_SSL = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 465
+EMAIL_HOST_USER = 'vitalii0595@gmail.com'
+EMAIL_HOST_PASSWORD = '169w19bni169w19bni'
+
+CKEDITOR_UPLOAD_PATH = "uploads/"

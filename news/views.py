@@ -1,9 +1,32 @@
+from django.conf import settings
+from django.contrib import messages
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.shortcuts import redirect, render
 from django.views.generic import ListView, DetailView, CreateView
+from django.core.mail import send_mail
 
-from .forms import *
+from .forms import ContactForm, NewsForm
 from .models import *
 from .utils import MyMixin
-from django.contrib.auth.mixins import LoginRequiredMixin
+
+
+def send_message(request):
+    if request.method == 'POST':
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            subject = form.cleaned_data['subject']
+            message = form.cleaned_data['message']
+            email_from = settings.EMAIL_HOST_USER
+            recipient_list = ['zazimko1995@gmail.com', ]
+            mail = send_mail(subject, message, email_from, recipient_list, fail_silently=True)
+            if mail:
+                messages.success(request, 'Отправлено!')
+                return redirect('send_mail')
+            else:
+                messages.error(request, 'Ошибка отправки!')
+    else:
+        form = ContactForm()
+    return render(request, 'news/send_mail.html', {'form': form})
 
 
 class HomeNews(MyMixin, ListView):
