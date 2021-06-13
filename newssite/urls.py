@@ -6,9 +6,11 @@ from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('ckeditor/', include('ckeditor_uploader.urls')),
     path('', include('news.urls')),
     path('account/', include('user.urls')),
+
+    path('captcha/', include('captcha.urls')),
+    path('ckeditor/', include('ckeditor_uploader.urls')),
 ]
 
 if settings.DEBUG:

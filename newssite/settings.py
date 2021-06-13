@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'debug_toolbar',
     'ckeditor',
+    'captcha',
     'ckeditor_uploader',
     'news.apps.NewsConfig',
     'user.apps.UserConfig'
@@ -152,3 +153,11 @@ EMAIL_HOST_USER = 'vitalii0595@gmail.com'
 EMAIL_HOST_PASSWORD = '169w19bni169w19bni'
 
 CKEDITOR_UPLOAD_PATH = "uploads/"
+
+
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.filebased.FileBasedCache',
+        'LOCATION': os.path.join(BASE_DIR, 'django_cache'),
+    }
+}
