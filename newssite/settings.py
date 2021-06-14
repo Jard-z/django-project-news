@@ -150,7 +150,7 @@ EMAIL_USE_SSL = True
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 465
 EMAIL_HOST_USER = 'vitalii0595@gmail.com'
-EMAIL_HOST_PASSWORD = '169w19bni169w19bni'
+EMAIL_HOST_PASSWORD = ''
 
 CKEDITOR_UPLOAD_PATH = "uploads/"
 
